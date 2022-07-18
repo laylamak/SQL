@@ -1,0 +1,25 @@
+create table Luna_store (id INTEGER PRIMARY KEY, item TEXT, categorty TEXT, quantity INTEGER, price INTEGER, sold INTEGER);
+INSERT INTO Luna_store VALUES (1, "dress", "full body", 34, 18.99, 15);
+insert into Luna_store VALUES (2, "pants", "bottoms", 41, 14.99, 27);
+insert into Luna_store vALUES (3, "tshirts", "tops", 23, 7.49, 14);
+insert into Luna_store VALUES (4, "shorts", "bottoms", 21, 17.99, 10);
+insert into Luna_store VALUES (5, "shirt", "tops", 38, 24.99, 18);
+insert into Luna_store VALUES (6, "romper", "full body", 12, 29.99, 7);
+insert into Luna_store VALUES (7, "skirt", "bottoms", 62, 18.99, 41);
+insert into Luna_store VALUES(8, "hat", "accessories", 41, 15.99, 27);
+insert into Luna_store VALUES (9, "necklace", 53, 9.99, 38);
+
+--display the database ordered by price
+select * from Luna_store order by price;
+
+--how many items has the store sold?
+select sum(sold) from Luna_store;
+
+--what's the average price of items in the tops category?
+select AVG(price) "average tops price" from Luna_store
+where category="tops";
+
+--what're the 5 most sold item in the store?
+select item, price, sold from Luna_store
+order by sold desc
+limit 5;
