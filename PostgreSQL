@@ -1,0 +1,29 @@
+--Using PostgreSQL to retrieve some data from two different tables. first table providing names of cast members and directors of movies and tv shows (netflix_people) and the other containing titles info (netflix_title_info)
+
+--number of movies in data base
+select count (title) 
+from "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+where type = 'Movie';
+
+-- most recent batch added to movies and tv shows
+select max (date(date_added))
+from  "CharlotteChaze/BreakIntoTech"."netflix_titles_info";
+
+--list all movies and tv shows in alphabetical order
+select title 
+from  "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+order by title asc;
+
+select p.director, t.title
+from "CharlotteChaze/BreakIntoTech"."netflix_people" p
+left join "CharlotteChaze/BreakIntoTech"."netflix_titles_info" t
+on p.show_id=t.show_id
+where t.title='Bright Star';
+
+--oldest movie in the data base and year it was released
+select title, release_year
+from "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+where type='Movie'
+group by title, release_year
+order by release_year asc
+limit 1;
